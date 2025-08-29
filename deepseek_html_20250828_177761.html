@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Link In Bio - NURMAJID AHMAD HASAN</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root{
+    --sky1:#cfeaff;
+    --sky2:#f6f7ff;
+    --ground1:#c9f7d3;
+    --ground2:#a7e6b4;
+    --text:#183046;
+    --muted:#4a6072;
+    --card:#ffffffee;
+    --shadow: 0 12px 30px rgba(16, 38, 66, .15);
+    --btn-from:#ffd5d5;
+    --btn-to:#ffc3c3;
+    --btn-border:#ffb2b2;
+  }
+
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family: 'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif;
+    color:var(--text);
+    background: radial-gradient(1200px 600px at 50% -10%, var(--sky1), var(--sky2)) fixed;
+    display:flex; align-items:center; justify-content:center;
+    padding:28px 16px;
+    opacity:0; transform:translateY(6px); transition:opacity .7s ease, transform .6s ease;
+  }
+  body.ready{opacity:1; transform:none}
+
+  .wrap{
+    width:100%; max-width:620px;
+    background:linear-gradient(180deg,#ffffff, #f9fbff 60%, #f2f8ff);
+    border:2px solid #e6eef7; border-radius:28px;
+    box-shadow: var(--shadow);
+    overflow:hidden;
+    position: relative;
+  }
+
+  .hero{
+    position:relative; padding:42px 20px 68px;
+    text-align:center;
+    background: radial-gradient(1000px 420px at 50% -40%, #e7f3ff, #d8edff 45%, #cfeaff 70%, #cbe6ff 100%);
+    overflow: hidden;
+  }
+  
+  .cloud{position:absolute; top:18px; width:120px; height:36px; background:#fff; border:2px solid #e8f2ff; border-radius:20px}
+  .cloud:before,.cloud:after{content:""; position:absolute; background:#fff; border:2px solid #e8f2ff; border-radius:50%}
+  .cloud:before{width:36px; height:36px; left:-10px; top:-8px}
+  .cloud:after{width:48px; height:48px; right:-8px; top:-16px}
+  .c1{left:12%; animation: float 8s ease-in-out infinite}
+  .c2{right:10%; top:48px; transform:scale(1.1); animation: float 10s ease-in-out infinite 1s}
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-5px) translateX(5px); }
+  }
+  
+  .hill{position:absolute; bottom:0; left:-6%; width:55%; height:72px; background:linear-gradient(180deg,#b2f0c2,#9be7af); border-top:2px solid #d2f6db; border-right:2px solid #94d9a7; border-left:2px solid #94d9a7; border-radius:60px 60px 0 0}
+  .hill.r{left:auto; right:-6%; width:45%; height:62px; filter:brightness(.98)}
+
+  .avatar-container {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+  
+  .avatar{
+    width:108px; height:108px; border-radius:50%;
+    border:4px solid #ffffff; outline:2px solid #cfe7ff;
+    box-shadow:0 8px 18px rgba(24,48,70,.18);
+    object-fit:cover; background:#f0f4ff;
+  }
+  
+  .name{margin:14px 0 4px; font-weight:800; letter-spacing:.5px; font-size:1.4rem}
+  .role{color:var(--muted); font-weight:600; font-size:.98rem; margin-bottom: 10px;}
+  
+  .counter {
+    display: inline-block;
+    background: #ffedbc;
+    border: 2px solid #f9d374;
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #8a6600;
+    box-shadow: 0 3px 0 rgba(0,0,0,0.1);
+  }
+
+  .links{
+    padding:18px 16px 26px;
+    background:
+      linear-gradient(180deg, transparent, #f6fff9 40%, #ecfff5 100%),
+      repeating-linear-gradient(90deg, #dff8e6 0 10px, #eaffef 10px 20px, #e3fff0 20px 30px);
+    border-top:2px dashed #def1ff;
+    position: relative;
+  }
+  
+  .coin-container {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+  }
+  
+  .mini-coin {
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(to bottom, #ffe36e, #ffd142);
+    border: 2px solid #f4b300;
+    border-radius: 50%;
+    animation: coin-spin 2s infinite linear;
+  }
+  
+  @keyframes coin-spin {
+    0% { transform: rotateY(0deg); }
+    100% { transform: rotateY(360deg); }
+  }
+  
+  .grid{
+    display:grid; gap:14px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width:560px){ .grid{ grid-template-columns: 1fr; } }
+
+  .link-btn{
+    position:relative;
+    display:flex; align-items:center; gap:12px;
+    width:100%; padding:14px 14px;
+    text-decoration:none; color:var(--text); font-weight:700;
+    background: linear-gradient(180deg, var(--btn-from), var(--btn-to));
+    border:2px solid var(--btn-border);
+    border-radius:18px;
+    box-shadow:0 6px 0 0 rgba(0,0,0,.08), 0 10px 20px rgba(0,0,0,.08);
+    transform:translateY(0); transition: transform .08s ease, box-shadow .18s ease;
+    will-change: transform, box-shadow;
+    overflow: hidden;
+  }
+  
+  .link-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.7s ease;
+  }
+  
+  .link-btn:hover::before {
+    left: 100%;
+  }
+  
+  .link-btn:focus-visible{outline:3px dashed #1d80ff; outline-offset:4px}
+  .link-btn:hover{ transform:translateY(-2px); box-shadow:0 10px 0 0 rgba(0,0,0,.06), 0 18px 32px rgba(0,0,0,.12); }
+  .link-btn:active{ transform:translateY(1px) }
+
+  .ico{
+    width:38px; height:38px; flex:0 0 38px; display:grid; place-items:center;
+    background:#fff; border:2px solid #e9f2ff; border-radius:10px;
+    box-shadow: inset 0 -2px 0 rgba(0,0,0,.06);
+    transition: transform 0.3s ease;
+  }
+  
+  .link-btn:hover .ico {
+    transform: scale(1.1) rotate(5deg);
+  }
+  
+  .lbl{display:flex; flex-direction:column; line-height:1.15}
+  .lbl .t{font-size:1.02rem}
+  .lbl .s{font-size:.8rem; color:#46677f; font-weight:600; opacity:.9}
+
+  .footer{
+    padding:16px; text-align:center; font-size:.9rem; color:#5b6d7c;
+    background:linear-gradient(180deg, #ecfff5, #e7fff2);
+    border-top:2px solid #d9f7e4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .social-icons {
+    display: flex;
+    gap: 12px;
+  }
+  
+  .social-icons a {
+    color: #5b6d7c;
+    font-size: 1.2rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .social-icons a:hover {
+    color: #183046;
+    transform: translateY(-2px);
+  }
+
+  .float-coin{
+    position:absolute; right:14px; top:14px; width:26px; height:26px;
+    animation: bob 2.2s ease-in-out infinite;
+    cursor: pointer;
+    z-index: 10;
+  }
+  
+  .coin-score {
+    position: absolute;
+    right: 50px;
+    top: 18px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #8a6600;
+    background: #fffae0;
+    padding: 2px 8px;
+    border-radius: 10px;
+    border: 1px solid #f4b300;
+    display: none;
+  }
+  
+  @keyframes bob{
+    0%,100%{ transform:translateY(0) }
+    50%{ transform:translateY(-6px) }
+  }
+  
+  .notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-100px);
+    background: #fff;
+    padding: 12px 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    z-index: 1000;
+    transition: transform 0.5s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .notification.show {
+    transform: translateX(-50%) translateY(0);
+  }
+  
+  .notification i {
+    color: #4caf50;
+    font-size: 1.2rem;
+  }
+  
+  .loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--sky2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+  }
+  
+  .mario-loader {
+    width: 60px;
+    height: 60px;
+    position: relative;
+  }
+  
+  .mario-loader::before,
+  .mario-loader::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    animation: marioJump 1.2s infinite ease-in-out;
+  }
+  
+  .mario-loader::before {
+    width: 30px;
+    height: 30px;
+    background: #e60000;
+    left: 0;
+    top: 0;
+  }
+  
+  .mario-loader::after {
+    width: 20px;
+    height: 20px;
+    background: #1b78be;
+    right: 0;
+    bottom: 0;
+    animation-delay: 0.6s;
+  }
+  
+  @keyframes marioJump {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+  
+  @media (max-width: 480px) {
+    .hero {
+      padding: 30px 15px 50px;
+    }
+    
+    .name {
+      font-size: 1.2rem;
+    }
+    
+    .role {
+      font-size: 0.9rem;
+    }
+    
+    .links {
+      padding: 15px 12px 20px;
+    }
+    
+    .link-btn {
+      padding: 12px;
+    }
+    
+    .footer {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="loader">
+    <div class="mario-loader"></div>
+  </div>
+
+  <div class="notification" id="notification">
+    <i class="fas fa-check-circle"></i>
+    <span>Link berhasil disalin!</span>
+  </div>
+
+  <main class="wrap" role="main">
+    <section class="hero">
+      <div class="cloud c1" aria-hidden="true"></div>
+      <div class="cloud c2" aria-hidden="true"></div>
+      <div class="hill" aria-hidden="true"></div>
+      <div class="hill r" aria-hidden="true"></div>
+
+      <svg class="float-coin" id="float-coin" viewBox="0 0 64 64" aria-hidden="true">
+        <defs>
+          <linearGradient id="gCoin" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stop-color="#ffe36e"/>
+            <stop offset="100%" stop-color="#ffd142"/>
+          </linearGradient>
+        </defs>
+        <circle cx="32" cy="32" r="28" fill="url(#gCoin)" stroke="#f4b300" stroke-width="4"/>
+        <rect x="28" y="18" width="8" height="28" rx="3" fill="#f0a800"/>
+        <ellipse cx="32" cy="32" rx="22" ry="22" fill="none" stroke="#ffef9f" stroke-width="3"/>
+      </svg>
+      
+      <span class="coin-score" id="coin-score">0 koin</span>
+
+      <div class="avatar-container">
+        <img src="profil.png" alt="Foto Profil - NURMAJID AHMAD HASAN" class="avatar" id="profile-avatar" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTA4IiBoZWlnaHQ9IjEwOCIgdmlld0JveD0iMCAwIDEwOCAxMDgiIGZpbGw9Im5vbmUiIHhtbG5z=" />
+      </div>
+      <h1 class="name">NURMAJID AHMAD HASAN</h1>
+      <p class="role">Pelajar</p>
+      <div class="counter" id="visit-counter">Pengunjung: 0</div>
+    </section>
+
+    <section class="links" aria-label="Daftar tautan">
+      <div class="coin-container">
+        <div class="mini-coin"></div>
+        <div class="mini-coin"></div>
+        <div class="mini-coin"></div>
+      </div>
+      
+      <div class="grid">
+        <!-- Hanya WhatsApp dan TikTok yang tersisa -->
+        <a class="link-btn"
+           href="https://wa.me/62895401563386"
+           target="_blank" rel="noopener"
+           aria-label="WhatsApp: +62 895-4015-63386"
+           data-colors='{"from":"#ffdede","to":"#ffc8c8","border":"#ffb3b3"}'>
+          <div class="ico" aria-hidden="true">
+            <svg viewBox="0 0 64 64" width="26" height="26">
+              <defs>
+                <linearGradient id="mushCap" x1="0" x2="1">
+                  <stop offset="0%" stop-color="#ff8f8f"/>
+                  <stop offset="100%" stop-color="#ffb4b4"/>
+                </linearGradient>
+              </defs>
+              <path d="M8 28c0-10 10-18 24-18s24 8 24 18H8z" fill="url(#mushCap)" stroke="#e07272" stroke-width="3" />
+              <circle cx="20" cy="24" r="5" fill="#fff" />
+              <circle cx="44" cy="24" r="5" fill="#fff" />
+              <rect x="20" y="28" width="24" height="14" rx="6" fill="#fff2d9" stroke="#f0d8a9" stroke-width="3" />
+              <circle cx="28" cy="36" r="3" fill="#e0be8c" />
+              <circle cx="36" cy="36" r="3" fill="#e0be8c" />
+            </svg>
+          </div>
+          <div class="lbl">
+            <span class="t">WhatsApp</span>
+            <span class="s">+62 895-4015-63386</span>
+          </div>
+        </a>
+
+        <a class="link-btn"
+           href="https://www.tiktok.com/@satusatu.0"
+           target="_blank" rel="noopener"
+           aria-label="Tiktok: @satusatu.0"
+           data-colors='{"from":"#fff3bf","to":"#ffe791","border":"#ffd862"}'>
+          <div class="ico" aria-hidden="true">
+            <svg viewBox="0 0 64 64" width="26" height="26">
+              <defs>
+                <linearGradient id="starG" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#ffe782"/>
+                  <stop offset="100%" stop-color="#ffd34f"/>
+                </linearGradient>
+              </defs>
+              <path d="M32 6l7.5 14.7 16.5 2.4-12 11.7 2.8 16.3L32 43.5 17.2 51 20 34.8 8 23.1l16.5-2.4L32 6z"
+                    fill="url(#starG)" stroke="#f4b300" stroke-width="3" stroke-linejoin="round"/>
+              <circle cx="26" cy="28" r="2.5" fill="#5b3b00"/>
+              <circle cx="38" cy="28" r="2.5" fill="#5b3b00"/>
+            </svg>
+          </div>
+          <div class="lbl">
+            <span class="t">TikTok</span>
+            <span class="s">@satusatu.0</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>© 2025 - mybio</span>
+      <div class="social-icons">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
+    </footer>
+  </main>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    document.querySelector('.loader').style.opacity = '0';
+    setTimeout(() => {
+      document.querySelector('.loader').style.display = 'none';
+    }, 500);
+    
+    document.body.classList.add('ready');
+    updateVisitorCounter();
+    setupCoinGame();
+  });
+
+  const buttons = document.querySelectorAll('.link-btn');
+  buttons.forEach(btn => {
+    const defaults = {from:'#ffd5d5', to:'#ffc3c3', border:'#ffb2b2'};
+    const colors = Object.assign({}, defaults, JSON.parse(btn.dataset.colors || '{}'));
+    btn.style.setProperty('--btn-from', colors.from);
+    btn.style.setProperty('--btn-to', colors.to);
+    btn.style.setProperty('--btn-border', colors.border);
+
+    const apply = (c)=> {
+      btn.style.setProperty('--btn-from', c.from);
+      btn.style.setProperty('--btn-to', c.to);
+      btn.style.setProperty('--btn-border', c.border);
+    };
+
+    const hoverColors = {
+      from: shade(colors.from, -6),
+      to: shade(colors.to, -6),
+      border: shade(colors.border, -8)
+    };
+
+    btn.addEventListener('pointerenter', ()=> apply(hoverColors));
+    btn.addEventListener('pointerleave', ()=> apply(colors));
+    btn.addEventListener('focus', ()=> apply(hoverColors));
+    btn.addEventListener('blur', ()=> apply(colors));
+    
+    btn.addEventListener('click', function(e) {
+      if (!this.href.startsWith('mailto:')) {
+        e.preventDefault();
+        showNotification();
+        setTimeout(() => {
+          window.open(this.href, '_blank');
+        }, 1000);
+      }
+    });
+  });
+
+  function shade(hex, percent){
+    try{
+      const p = Math.max(-100, Math.min(100, percent)) / 100;
+      const num = parseInt(hex.replace('#',''), 16);
+      let r = (num >> 16) & 0xff,
+          g = (num >> 8) & 0xff,
+          b = num & 0xff;
+      r = Math.round(r + (p<0 ? r*p : (255 - r)*p));
+      g = Math.round(g + (p<0 ? g*p : (255 - g)*p));
+      b = Math.round(b + (p<0 ? b*p : (255 - b)*p));
+      return '#' + [r,g,b].map(v => v.toString(16).padStart(2,'0')).join('');
+    }catch(e){ return hex; }
+  }
+  
+  function updateVisitorCounter() {
+    let visits = localStorage.getItem('pageVisits') || 0;
+    visits = parseInt(visits) + 1;
+    localStorage.setItem('pageVisits', visits);
+    document.getElementById('visit-counter').textContent = `Pengunjung: ${visits}`;
+  }
+  
+  function showNotification() {
+    const notification = document.getElementById('notification');
+    notification.classList.add('show');
+    
+    setTimeout(() => {
+      notification.classList.remove('show');
+    }, 3000);
+  }
+  
+  function setupCoinGame() {
+    const coin = document.getElementById('float-coin');
+    const coinScore = document.getElementById('coin-score');
+    let coins = parseInt(localStorage.getItem('coinsCollected') || 0);
+    
+    coinScore.textContent = `${coins} koin`;
+    
+    coin.addEventListener('click', function() {
+      this.style.animation = 'none';
+      this.offsetHeight;
+      this.style.animation = 'bob 2.2s ease-in-out infinite';
+      
+      coins++;
+      localStorage.setItem('coinsCollected', coins);
+      coinScore.textContent = `${coins} koin`;
+      coinScore.style.display = 'inline-block';
+    });
+  }
+</script>
+</body>
+</html>
